@@ -15,7 +15,8 @@
 # GNU General Public License for more details:                         #
 # http://www.gnu.org/licenses/gpl-3.0.txt                              #
 ########################################################################
-
+import pdb
+pdb.set_trace()
 VERSION = '1.4.1'
 
 TRNSM_VERSION_MIN = '1.90'
@@ -41,6 +42,7 @@ except ImportError:
     except (ImportError,AttributeError):
         quit("Please install simplejson or Python 2.6 or higher.")
 
+import pdb
 import time
 import re
 import base64
@@ -590,6 +592,7 @@ class Transmission:
 
 
     def add_torrent(self, location):
+        pdb.set_trace()
         request = TransmissionRequest(self.host, self.port, self.path, 'torrent-add', 1, {'filename': location})
         request.send_request()
         response = request.get_response()
@@ -3231,7 +3234,7 @@ if __name__ == '__main__':
     if transmissionremote_args:
         cmd = ['transmission-remote', '%s:%s' %
                (config.get('Connection', 'host'), config.get('Connection', 'port'))]
-
+        pdb.set_trace()
         # one argument and it doesn't start with '-' --> treat it like it's a torrent link/url
         if len(transmissionremote_args) == 1 and not transmissionremote_args[0].startswith('-'):
             cmd.extend(['-a', transmissionremote_args[0]])
@@ -3248,6 +3251,7 @@ if __name__ == '__main__':
         try:
             retcode = call(cmd)
         except OSError, msg:
+            pdb.set_trace()
             quit("Could not execute the above command: %s\n" % msg, 128)
         quit('', retcode)
 
